@@ -22,7 +22,6 @@ default: &default
 development:
   <<: *default
   database: salon_app_back_end_development
-  database: <%= ENV['SALON_APP_BACKEND_DATABASE'] %>
   username: <%= ENV['SALON_APP_BACKEND_DATABASE_USER'] %>
   password: <%= ENV['SALON_APP_BACKEND_DATABASE_PASSWORD'] %>
   host: <%= ENV['SALON_APP_BACKEND_DATABASE_HOSTNAME'] %>
@@ -31,7 +30,6 @@ development:
 test:
   <<: *default
   database: salon_app_back_end_test
-  database: <%= ENV['SALON_APP_BACKEND_TEST_DATABASE'] %>
   username: <%= ENV['SALON_APP_BACKEND_DATABASE_USER'] %>
   password: <%= ENV['SALON_APP_BACKEND_DATABASE_PASSWORD'] %>
   host: <%= ENV['SALON_APP_BACKEND_DATABASE_HOSTNAME'] %>
