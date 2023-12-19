@@ -1,46 +1,27 @@
-# PostgreSQL. Versions 9.3 and up are supported.
-#
-# Install the pg driver:
-#   gem install pg
-# On macOS with Homebrew:
-#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
-# On Windows:
-#   gem install pg
-#       Choose the win32 build.
-#       Install PostgreSQL and put its /bin directory on your path.
-#
-# Configure Using Gemfile
-# gem "pg"
-#
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  idle_timeout: <%= ENV["RAILS_IDLE_CONNECTION"] ||  60 %>
+  port: <%= ENV['RAILS_DATABASE_PORT'] || 5432 %>
+  host: localhost
+  username: postgres
+  password: newpassword
 
 development:
   <<: *default
   database: salon_app_back_end_development
-  database: <%= ENV['SALON_APP_BACKEND_DATABASE'] %>
-  username: <%= ENV['SALON_APP_BACKEND_DATABASE_USER'] %>
-  password: <%= ENV['SALON_APP_BACKEND_DATABASE_PASSWORD'] %>
-  host: <%= ENV['SALON_APP_BACKEND_DATABASE_HOSTNAME'] %>
-  port: 5432
 
 test:
   <<: *default
-  database: salon_app_back_end_test
-  database: <%= ENV['SALON_APP_BACKEND_TEST_DATABASE'] %>
-  username: <%= ENV['SALON_APP_BACKEND_DATABASE_USER'] %>
-  password: <%= ENV['SALON_APP_BACKEND_DATABASE_PASSWORD'] %>
-  host: <%= ENV['SALON_APP_BACKEND_DATABASE_HOSTNAME'] %>
-  port: 5432
+  database: super
 
+nirmal:
+  <<: *default
+  database: salon_app_back_end_development
 
 production:
   <<: *default
   database: salon_app_back_end_production
-  username: salon_app_back_end
-  password: <%= ENV["SALON_APP_BACK_END_DATABASE_PASSWORD"] %>
-  port: 5432
+  username: postgres
+  password: newpassword
