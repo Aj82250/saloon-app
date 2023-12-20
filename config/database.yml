@@ -11,10 +11,18 @@ default: &default
 development:
   <<: *default
   database: salon_app_back_end_development
+  username: <%= ENV['SALON_APP_BACKEND_DATABASE_USER'] %>
+  password: <%= ENV['SALON_APP_BACKEND_DATABASE_PASSWORD'] %>
+  host: <%= ENV['SALON_APP_BACKEND_DATABASE_HOSTNAME'] %>
+  port: 5432
 
 test:
   <<: *default
-  database: super
+  database: salon_app_back_end_test
+  username: <%= ENV['SALON_APP_BACKEND_DATABASE_USER'] %>
+  password: <%= ENV['SALON_APP_BACKEND_DATABASE_PASSWORD'] %>
+  host: <%= ENV['SALON_APP_BACKEND_DATABASE_HOSTNAME'] %>
+  port: 5432
 
 nirmal:
   <<: *default
