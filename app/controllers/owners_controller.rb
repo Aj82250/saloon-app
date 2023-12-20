@@ -11,7 +11,7 @@ class OwnersController < ApplicationController
       if owner.save
         render json: owner, status: :ok
       else
-        render json: { message: "Not created" }
+        render json: owner.errors
       end
     else
       render json: { error: "password and confirm_password doesn't match" }
@@ -41,7 +41,8 @@ class OwnersController < ApplicationController
 
   private
   def owner_params
-    params.permit(:name,:email, :phone_number, :password, :shop_id)
+    params.require(:data).permit(:name,:email, :phone_number, :password, :shop_id, 
+      address_attributes: [:country, :latitude, :longitude, :address, :addressble_id, :addressble_type, :address_type]))
   end
 
   def find_owner
