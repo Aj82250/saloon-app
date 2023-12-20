@@ -5,6 +5,6 @@ class ApplicationController < ActionController::API
 	def authenticate_request
 		token = request.headers["token"]
 		decoded = jwt_decode(token)
-		@current_user = Account.find(decoded[:account_id])
+		@current_user = Owner.find(decoded[:owner_id])
 	end
 end
