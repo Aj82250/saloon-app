@@ -69,3 +69,4 @@ end
 gem 'jwt'
 gem "bcrypt"
 gem "byebug"
+gem 'active_model_serializers'
