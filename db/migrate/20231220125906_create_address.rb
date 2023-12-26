@@ -5,8 +5,7 @@ class CreateAddress < ActiveRecord::Migration[7.1]
       t.float :latitude
       t.float :longitude
       t.string :address
-      t.integer :addressble_id
-      t.string :addressble_type
+      t.references :addressable, polymorphic: true
       t.integer :address_type
       t.timestamps
     end

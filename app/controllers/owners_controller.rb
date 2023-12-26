@@ -42,7 +42,7 @@ class OwnersController < ApplicationController
   private
   def owner_params
     params.require(:data).permit(:name,:email, :phone_number, :password, :shop_id, 
-      address_attributes: [:country, :latitude, :longitude, :address, :addressble_id, :addressble_type, :address_type]))
+      media_attributes: [:name, :url] , address_attributes: [:country, :latitude, :longitude, :address, :address_type] )
   end
 
   def find_owner
