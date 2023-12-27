@@ -1,5 +1,4 @@
 class ShopsController < ApplicationController
-  include JsonWebToken
   skip_before_action :authenticate_request, only: [:create]
   before_action :find_shop, only: [:show, :update, :destroy]
 
@@ -40,8 +39,11 @@ class ShopsController < ApplicationController
     @shop = Shop.find_by(id: @current_user.id)
     unless @shop.present?
       render json: {message: "Shop not found"}
+    end
   end
+
   def shop_params
-    params.require(:data).permit(:name, :shop_start_time, :shop_end_time, :full_phone_number)
+    params.require(:data).permit(:name, :shop_start_time, :shop_end_time, :full_phone_number,
+      media_attributes: [:name, :url] , address_attributes: [:country, :latitude, :longitude, :address, :address_type] )
   end
 end
